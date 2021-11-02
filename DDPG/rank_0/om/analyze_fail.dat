@@ -1,0 +1,345 @@
+# [No.1] construct_wrapper.4853
+# In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(341)/    def construct(self, gradients):/
+funcgraph fg_4853(
+        %para1 : Tuple[Tensor(F32)*4]    # gradients
+        , %para2 : Ref[Tensor(F32)][1]    # beta1_power
+        , %para3 : Ref[Tensor(F32)][1]    # beta2_power
+        , %para4 : Ref[Tensor(F32)][32, 10]    # _critic.fc.0.weight
+        , %para5 : Ref[Tensor(F32)][32]    # _critic.fc.0.bias
+        , %para6 : Ref[Tensor(F32)][1, 32]    # _critic.fc.2.weight
+        , %para7 : Ref[Tensor(F32)][1]    # _critic.fc.2.bias
+        , %para8 : Ref[Tensor(F32)][32, 10]    # moment1._critic.fc.0.weight
+        , %para9 : Ref[Tensor(F32)][32]    # moment1._critic.fc.0.bias
+        , %para10 : Ref[Tensor(F32)][1, 32]    # moment1._critic.fc.2.weight
+        , %para11 : Ref[Tensor(F32)][1]    # moment1._critic.fc.2.bias
+        , %para12 : Ref[Tensor(F32)][32, 10]    # moment2._critic.fc.0.weight
+        , %para13 : Ref[Tensor(F32)][32]    # moment2._critic.fc.0.bias
+        , %para14 : Ref[Tensor(F32)][1, 32]    # moment2._critic.fc.2.weight
+        , %para15 : Ref[Tensor(F32)][1]    # moment2._critic.fc.2.bias
+        , %para16 : Ref[Tensor(F32)][]    # learning_rate
+    ) {
+
+#------------------------> 0
+    %1 = FuncGraph::fg_4854(%para1)    #(Tuple[Tensor(F32)*4])    # fg_4854=construct.4854 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(341)/    def construct(self, gradients):/#[CNode]4894
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(341)/    def construct(self, gradients):/#[CNode]4895
+}
+# order:
+#   1: construct_wrapper.4853:[CNode]4894{[0]: ValueNode<FuncGraph> construct.4854, [1]: gradients}
+#   2: construct_wrapper.4853:[CNode]4895{[0]: ValueNode<Primitive> Return, [1]: [CNode]4894}
+
+
+# [No.2] construct.4854
+# In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(341)/    def construct(self, gradients):/
+funcgraph fg_4854[fg_4853](
+        %para17 : Tuple[Tensor(F32)*4]    # gradients
+    ) {
+    %1 : Tensor(F32)[1] = DoSignaturePrimitive::S-Prim-mul{prim_type=1}(%para2, Tensor(43)[])    #(Ref[Tensor(F32)][1], Tensor(F32)[]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(351)/        beta1_power = self.beta1_power * self.beta1/#beta1_power
+    %2 : Ref[Tensor(F32)][1] = DoSignaturePrimitive::S-Prim-Assign{prim_type=1}[output_names=["output"], side_effect_mem=Bool(1), input_names=["ref", "value"]](%para2, %1)    #(Ref[Tensor(F32)][1], Tensor(F32)[1]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(352)/        self.beta1_power = beta1_power/#[CNode]4896
+    %3 : Tensor(F32)[1] = DoSignaturePrimitive::S-Prim-mul{prim_type=1}(%para3, Tensor(43)[])    #(Ref[Tensor(F32)][1], Tensor(F32)[]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(353)/        beta2_power = self.beta2_power * self.beta2/#beta2_power
+    %4 : Ref[Tensor(F32)][1] = DoSignaturePrimitive::S-Prim-Assign{prim_type=1}[output_names=["output"], side_effect_mem=Bool(1), input_names=["ref", "value"]](%para3, %3)    #(Ref[Tensor(F32)][1], Tensor(F32)[1]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(354)/        self.beta2_power = beta2_power/#[CNode]4897
+    %5 : Tuple[Ref[Tensor(F32)]*2] = Primitive::MakeTuple{prim_type=1}(%2, %4)    #(Ref[Tensor(F32)][1], Ref[Tensor(F32)][1]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(341)/    def construct(self, gradients):/#[CNode]4898
+    %6 : Tuple[Ref[Tensor(F32)]*2] = Primitive::stop_gradient{prim_type=1}(%5)    #(Tuple[Ref[Tensor(F32)]*2]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(341)/    def construct(self, gradients):/#[CNode]4899
+    %7 : Bool = FuncGraph::fg_4900(Bool(0))    #(Bool)    # fg_4900=bool_.4900 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(355)/        if self.is_group_lr:/#4901
+    %8 : Func = Primitive::Switch{prim_type=1}(%7, FuncGraph::fg_4902, FuncGraph::fg_4855)    #(Bool, Func, Func)    # fg_4902=✓construct.4902, fg_4855=✗construct.4855 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(355)/        if self.is_group_lr:/#[CNode]4903
+
+#------------------------> 1
+    %9 = %8() #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(355)/        if self.is_group_lr:/#[CNode]4904
+    %10 = Primitive::Depend{prim_type=1}[side_effect_propagate=I64(1)](%9, %6)    #(Undefined, Tuple[Ref[Tensor(F32)]*2]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(341)/    def construct(self, gradients):/#[CNode]4905
+    Primitive::Return{prim_type=1}(%10)    #(Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(341)/    def construct(self, gradients):/#[CNode]4906
+}
+# order:
+#   1: construct.4854:gradients{[0]: ValueNode<FuncGraph> decay_weight.4907, [1]: gradients}
+#   2: construct.4854:gradients{[0]: ValueNode<FuncGraph> gradients_centralization.4908, [1]: gradients}
+#   3: construct.4854:gradients{[0]: ValueNode<FuncGraph> scale_grad.4909, [1]: gradients}
+#   4: construct.4854:gradients{[0]: ValueNode<FuncGraph> _grad_sparse_indices_deduplicate.4910, [1]: gradients}
+#   5: construct.4854:lr{[0]: ValueNode<FuncGraph> get_lr.4911}
+#   6: construct.4854:beta1_power{[0]: ValueNode<DoSignaturePrimitive> S-Prim-mul, [1]: beta1_power, [2]: ValueNode<Tensor> Tensor(shape=[], dtype=Float32, value= 0.9)}
+#   7: construct.4854:[CNode]4896{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Assign, [1]: beta1_power, [2]: beta1_power}
+#   8: construct.4854:beta2_power{[0]: ValueNode<DoSignaturePrimitive> S-Prim-mul, [1]: beta2_power, [2]: ValueNode<Tensor> Tensor(shape=[], dtype=Float32, value= 0.999)}
+#   9: construct.4854:[CNode]4897{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Assign, [1]: beta2_power, [2]: beta2_power}
+#  10: construct.4854:4901{[0]: ValueNode<FuncGraph> bool_.4900, [1]: ValueNode<BoolImm> false}
+#  11: construct.4854:[CNode]4903{[0]: ValueNode<Primitive> Switch, [1]: 4901, [2]: ValueNode<FuncGraph> ✓construct.4902, [3]: ValueNode<FuncGraph> ✗construct.4855}
+#  12: construct.4854:[CNode]4904{[0]: [CNode]4903}
+#  13: construct.4854:[CNode]4906{[0]: ValueNode<Primitive> Return, [1]: [CNode]4905}
+
+
+# [No.3] ✗construct.4855
+# In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(355)/        if self.is_group_lr:/
+funcgraph fg_4855[fg_4854](
+) {
+    %1 : $(construct.4854):Tensor(F32)[1] = DoSignaturePrimitive::S-Prim-mul{prim_type=1}(%para2, Tensor(43)[])    #(Ref[Tensor(F32)][1], Tensor(F32)[]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(351)/        beta1_power = self.beta1_power * self.beta1/#beta1_power
+    %2 : $(construct.4854):Tensor(F32)[1] = DoSignaturePrimitive::S-Prim-mul{prim_type=1}(%para3, Tensor(43)[])    #(Ref[Tensor(F32)][1], Tensor(F32)[]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(353)/        beta2_power = self.beta2_power * self.beta2/#beta2_power
+    %3 : $(construct.4854):Ref[Tensor(F32)][] = FuncGraph::fg_4911()    # fg_4911=get_lr.4911 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(349)/        lr = self.get_lr()/#lr
+    %4 : Func = DoSignaturePrimitive::S-Prim-Partial{prim_type=1}[side_effect_propagate=I64(1)](DoSignaturePrimitive::S-Prim-adam_opt{prim_type=1}, DoSignaturePrimitive::S-Prim-Adam{prim_type=1}[use_nesterov=Bool(0), side_effect_mem=Bool(1), use_locking=Bool(0)], DoSignaturePrimitive::S-Prim-FusedSparseAdam{prim_type=1}[use_nesterov=Bool(0), use_locking=Bool(0), input_names=["var", "m", "v", "beta1_power", "beta2_power", "lr", "beta1", "beta2", "epsilon", "grad", "indices"], side_effect_mem=Bool(1), primitive_target="CPU", output_names=["var", "m", "v"]], DoSignaturePrimitive::S-Prim-Push{prim_type=1}[output_names=["key"], use_nesterov=Bool(0), input_names=["optim_inputs", "optim_input_shapes"], only_shape_indices=[I64(0), I64(1), I64(2)], optim_type="Adam", primitive_target="CPU", _side_effect=Bool(1)], DoSignaturePrimitive::S-Prim-Pull{prim_type=1}[input_names=["key", "weight"], output_names=["output"], primitive_target="CPU"], Bool(0), Bool(0), Bool(1), %1, %2, Tensor(43)[], Tensor(43)[], Tensor(43)[], %3)    #(Func, Func, Func, Func, Func, Bool, Bool, Bool, Tensor(F32)[1], Tensor(F32)[1], Tensor(F32)[], Tensor(F32)[], Tensor(F32)[], Ref[Tensor(F32)][]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4912
+    %5 : $(construct.4854):Tuple[Tensor(F32)*4] = FuncGraph::fg_4907(%para17)    #(Tuple[Tensor(F32)*4])    # fg_4907=decay_weight.4907 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(345)/        gradients = self.decay_weight(gradients)/#gradients
+    %6 : $(construct.4854):Tuple[Tensor(F32)*4] = FuncGraph::fg_4908(%5)    #(Tuple[Tensor(F32)*4])    # fg_4908=gradients_centralization.4908 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(346)/        gradients = self.gradients_centralization(gradients)/#gradients
+    %7 : $(construct.4854):Tuple[Tensor(F32)*4] = FuncGraph::fg_4909(%6)    #(Tuple[Tensor(F32)*4])    # fg_4909=scale_grad.4909 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(347)/        gradients = self.scale_grad(gradients)/#gradients
+    %8 : $(construct.4854):Tuple[Tensor(F32)*4] = FuncGraph::fg_4910(%7)    #(Tuple[Tensor(F32)*4])    # fg_4910=_grad_sparse_indices_deduplicate.4910 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(348)/        gradients = self._grad_sparse_indices_deduplicate(gradients)/#gradients
+    %9 : $(construct.4854):Tuple[Ref[Tensor(F32)]*4] = Primitive::MakeTuple{prim_type=1}(%para4, %para5, %para6, %para7)    #(Ref[Tensor(F32)][32, 10], Ref[Tensor(F32)][32], Ref[Tensor(F32)][1, 32], Ref[Tensor(F32)][1]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(342)/        params = self.parameters/#[CNode]4913
+    %10 : $(construct.4854):Tuple[Ref[Tensor(F32)]*4] = Primitive::MakeTuple{prim_type=1}(%para8, %para9, %para10, %para11)    #(Ref[Tensor(F32)][32, 10], Ref[Tensor(F32)][32], Ref[Tensor(F32)][1, 32], Ref[Tensor(F32)][1]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(343)/        moment1 = self.moment1/#[CNode]4914
+    %11 : $(construct.4854):Tuple[Ref[Tensor(F32)]*4] = Primitive::MakeTuple{prim_type=1}(%para12, %para13, %para14, %para15)    #(Ref[Tensor(F32)][32, 10], Ref[Tensor(F32)][32], Ref[Tensor(F32)][1, 32], Ref[Tensor(F32)][1]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(344)/        moment2 = self.moment2/#[CNode]4915
+
+#------------------------> 2
+    %12 = DoSignaturePrimitive::S-Prim-map{prim_type=1}(%4, %8, %9, %10, %11, (Bool(0), Bool(0), Bool(0), Bool(0)), (Bool(0), Bool(0), Bool(0), Bool(0)))    #(Func, Tuple[Tensor(F32)*4], Tuple[Ref[Tensor(F32)]*4], Tuple[Ref[Tensor(F32)]*4], Tuple[Ref[Tensor(F32)]*4], Tuple[Bool*4], Tuple[Bool*4]) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#success
+    %13 = FuncGraph::fg_4916(%12)    #(Undefined)    # fg_4916=↓construct.4916 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(355)/        if self.is_group_lr:/#[CNode]4917
+    Primitive::Return{prim_type=1}(%13)    #(Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(355)/        if self.is_group_lr:/#[CNode]4918
+}
+# order:
+#   1: ✗construct.4855:[CNode]4912{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Partial, [1]: ValueNode<DoSignaturePrimitive> S-Prim-adam_opt, [2]: ValueNode<DoSignaturePrimitive> S-Prim-Adam, [3]: ValueNode<DoSignaturePrimitive> S-Prim-FusedSparseAdam, [4]: ValueNode<DoSignaturePrimitive> S-Prim-Push, [5]: ValueNode<DoSignaturePrimitive> S-Prim-Pull, [6]: ValueNode<BoolImm> false, [7]: ValueNode<BoolImm> false, [8]: ValueNode<BoolImm> true, [9]: beta1_power, [10]: beta2_power, [11]: ValueNode<Tensor> Tensor(shape=[], dtype=Float32, value= 0.9), [12]: ValueNode<Tensor> Tensor(shape=[], dtype=Float32, value= 0.999), [13]: ValueNode<Tensor> Tensor(shape=[], dtype=Float32, value= 1e-008), [14]: lr}
+#   2: ✗construct.4855:success{[0]: ValueNode<DoSignaturePrimitive> S-Prim-map, [1]: [CNode]4912, [2]: gradients, [3]: [CNode]4913, [4]: [CNode]4914, [5]: [CNode]4915, [6]: ValueNode<ValueTuple> (false, false, false, false), [7]: ValueNode<ValueTuple> (false, false, false, false)}
+#   3: ✗construct.4855:[CNode]4917{[0]: ValueNode<FuncGraph> ↓construct.4916, [1]: success}
+#   4: ✗construct.4855:[CNode]4918{[0]: ValueNode<Primitive> Return, [1]: [CNode]4917}
+
+
+# [No.4] map.4856
+# In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/
+funcgraph fg_4856(
+        %para18 : Func    # [Parameter]4857
+        , %para19 : Tuple[Tensor(F32)*4]    # [Parameter]4858
+        , %para20 : Tuple[Ref[Tensor(F32)]*4]    # [Parameter]4859
+        , %para21 : Tuple[Ref[Tensor(F32)]*4]    # [Parameter]4860
+        , %para22 : Tuple[Ref[Tensor(F32)]*4]    # [Parameter]4861
+        , %para23 : Tuple[Bool*4]    # [Parameter]4862
+        , %para24 : Tuple[Bool*4]    # [Parameter]4863
+    ) {
+    %1 : Tensor(F32)[32, 10] = Primitive::TupleGetItem{prim_type=1}(%para19, I64(0))    #(Tuple[Tensor(F32)*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4919
+    %2 : Ref[Tensor(F32)][32, 10] = Primitive::TupleGetItem{prim_type=1}(%para20, I64(0))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4920
+    %3 : Ref[Tensor(F32)][32, 10] = Primitive::TupleGetItem{prim_type=1}(%para21, I64(0))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4921
+    %4 : Ref[Tensor(F32)][32, 10] = Primitive::TupleGetItem{prim_type=1}(%para22, I64(0))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4922
+    %5 : Bool = Primitive::TupleGetItem{prim_type=1}(%para23, I64(0))    #(Tuple[Bool*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4923
+    %6 : Bool = Primitive::TupleGetItem{prim_type=1}(%para24, I64(0))    #(Tuple[Bool*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4924
+    %7 : Bool = FuncGraph::fg_4925(%para18, %1, %2, %3, %4, %5, %6)    #(Func, Tensor(F32)[32, 10], Ref[Tensor(F32)][32, 10], Ref[Tensor(F32)][32, 10], Ref[Tensor(F32)][32, 10], Bool, Bool)    # fg_4925=map.4925 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4926
+    %8 : Tensor(F32)[32] = Primitive::TupleGetItem{prim_type=1}(%para19, I64(1))    #(Tuple[Tensor(F32)*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4927
+    %9 : Ref[Tensor(F32)][32] = Primitive::TupleGetItem{prim_type=1}(%para20, I64(1))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4928
+    %10 : Ref[Tensor(F32)][32] = Primitive::TupleGetItem{prim_type=1}(%para21, I64(1))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4929
+    %11 : Ref[Tensor(F32)][32] = Primitive::TupleGetItem{prim_type=1}(%para22, I64(1))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4930
+    %12 : Bool = Primitive::TupleGetItem{prim_type=1}(%para23, I64(1))    #(Tuple[Bool*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4931
+    %13 : Bool = Primitive::TupleGetItem{prim_type=1}(%para24, I64(1))    #(Tuple[Bool*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4932
+    %14 : Bool = FuncGraph::fg_4933(%para18, %8, %9, %10, %11, %12, %13)    #(Func, Tensor(F32)[32], Ref[Tensor(F32)][32], Ref[Tensor(F32)][32], Ref[Tensor(F32)][32], Bool, Bool)    # fg_4933=map.4933 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4934
+    %15 : Tensor(F32)[1, 32] = Primitive::TupleGetItem{prim_type=1}(%para19, I64(2))    #(Tuple[Tensor(F32)*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4935
+    %16 : Ref[Tensor(F32)][1, 32] = Primitive::TupleGetItem{prim_type=1}(%para20, I64(2))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4936
+    %17 : Ref[Tensor(F32)][1, 32] = Primitive::TupleGetItem{prim_type=1}(%para21, I64(2))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4937
+    %18 : Ref[Tensor(F32)][1, 32] = Primitive::TupleGetItem{prim_type=1}(%para22, I64(2))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4938
+    %19 : Bool = Primitive::TupleGetItem{prim_type=1}(%para23, I64(2))    #(Tuple[Bool*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4939
+    %20 : Bool = Primitive::TupleGetItem{prim_type=1}(%para24, I64(2))    #(Tuple[Bool*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4940
+    %21 : Bool = FuncGraph::fg_4941(%para18, %15, %16, %17, %18, %19, %20)    #(Func, Tensor(F32)[1, 32], Ref[Tensor(F32)][1, 32], Ref[Tensor(F32)][1, 32], Ref[Tensor(F32)][1, 32], Bool, Bool)    # fg_4941=map.4941 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4942
+    %22 : Tensor(F32)[1] = Primitive::TupleGetItem{prim_type=1}(%para19, I64(3))    #(Tuple[Tensor(F32)*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4943
+    %23 : Ref[Tensor(F32)][1] = Primitive::TupleGetItem{prim_type=1}(%para20, I64(3))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4944
+    %24 : Ref[Tensor(F32)][1] = Primitive::TupleGetItem{prim_type=1}(%para21, I64(3))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4945
+    %25 : Ref[Tensor(F32)][1] = Primitive::TupleGetItem{prim_type=1}(%para22, I64(3))    #(Tuple[Ref[Tensor(F32)]*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4946
+    %26 : Bool = Primitive::TupleGetItem{prim_type=1}(%para23, I64(3))    #(Tuple[Bool*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4947
+    %27 : Bool = Primitive::TupleGetItem{prim_type=1}(%para24, I64(3))    #(Tuple[Bool*4], I64) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4948
+
+#------------------------> 3
+    %28 = FuncGraph::fg_4864(%para18, %22, %23, %24, %25, %26, %27)    #(Func, Tensor(F32)[1], Ref[Tensor(F32)][1], Ref[Tensor(F32)][1], Ref[Tensor(F32)][1], Bool, Bool)    # fg_4864=map.4864 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4949
+    %29 = Primitive::MakeTuple{prim_type=1}(%7, %14, %21, %28)    #(Bool, Bool, Bool, Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4950
+    Primitive::Return{prim_type=1}(%29)    #(Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4951
+}
+# order:
+#   1: map.4856:[CNode]4919{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4858, [2]: ValueNode<Int64Imm> 0}
+#   2: map.4856:[CNode]4920{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4859, [2]: ValueNode<Int64Imm> 0}
+#   3: map.4856:[CNode]4921{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4860, [2]: ValueNode<Int64Imm> 0}
+#   4: map.4856:[CNode]4922{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4861, [2]: ValueNode<Int64Imm> 0}
+#   5: map.4856:[CNode]4923{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4862, [2]: ValueNode<Int64Imm> 0}
+#   6: map.4856:[CNode]4924{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4863, [2]: ValueNode<Int64Imm> 0}
+#   7: map.4856:[CNode]4926{[0]: ValueNode<FuncGraph> map.4925, [1]: [Parameter]4857, [2]: [CNode]4919, [3]: [CNode]4920, [4]: [CNode]4921, [5]: [CNode]4922, [6]: [CNode]4923, [7]: [CNode]4924}
+#   8: map.4856:[CNode]4927{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4858, [2]: ValueNode<Int64Imm> 1}
+#   9: map.4856:[CNode]4928{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4859, [2]: ValueNode<Int64Imm> 1}
+#  10: map.4856:[CNode]4929{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4860, [2]: ValueNode<Int64Imm> 1}
+#  11: map.4856:[CNode]4930{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4861, [2]: ValueNode<Int64Imm> 1}
+#  12: map.4856:[CNode]4931{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4862, [2]: ValueNode<Int64Imm> 1}
+#  13: map.4856:[CNode]4932{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4863, [2]: ValueNode<Int64Imm> 1}
+#  14: map.4856:[CNode]4934{[0]: ValueNode<FuncGraph> map.4933, [1]: [Parameter]4857, [2]: [CNode]4927, [3]: [CNode]4928, [4]: [CNode]4929, [5]: [CNode]4930, [6]: [CNode]4931, [7]: [CNode]4932}
+#  15: map.4856:[CNode]4935{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4858, [2]: ValueNode<Int64Imm> 2}
+#  16: map.4856:[CNode]4936{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4859, [2]: ValueNode<Int64Imm> 2}
+#  17: map.4856:[CNode]4937{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4860, [2]: ValueNode<Int64Imm> 2}
+#  18: map.4856:[CNode]4938{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4861, [2]: ValueNode<Int64Imm> 2}
+#  19: map.4856:[CNode]4939{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4862, [2]: ValueNode<Int64Imm> 2}
+#  20: map.4856:[CNode]4940{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4863, [2]: ValueNode<Int64Imm> 2}
+#  21: map.4856:[CNode]4942{[0]: ValueNode<FuncGraph> map.4941, [1]: [Parameter]4857, [2]: [CNode]4935, [3]: [CNode]4936, [4]: [CNode]4937, [5]: [CNode]4938, [6]: [CNode]4939, [7]: [CNode]4940}
+#  22: map.4856:[CNode]4943{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4858, [2]: ValueNode<Int64Imm> 3}
+#  23: map.4856:[CNode]4944{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4859, [2]: ValueNode<Int64Imm> 3}
+#  24: map.4856:[CNode]4945{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4860, [2]: ValueNode<Int64Imm> 3}
+#  25: map.4856:[CNode]4946{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4861, [2]: ValueNode<Int64Imm> 3}
+#  26: map.4856:[CNode]4947{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4862, [2]: ValueNode<Int64Imm> 3}
+#  27: map.4856:[CNode]4948{[0]: ValueNode<Primitive> TupleGetItem, [1]: [Parameter]4863, [2]: ValueNode<Int64Imm> 3}
+#  28: map.4856:[CNode]4949{[0]: ValueNode<FuncGraph> map.4864, [1]: [Parameter]4857, [2]: [CNode]4943, [3]: [CNode]4944, [4]: [CNode]4945, [5]: [CNode]4946, [6]: [CNode]4947, [7]: [CNode]4948}
+#  29: map.4856:[CNode]4950{[0]: ValueNode<Primitive> MakeTuple, [1]: [CNode]4926, [2]: [CNode]4934, [3]: [CNode]4942, [4]: [CNode]4949}
+#  30: map.4856:[CNode]4951{[0]: ValueNode<Primitive> Return, [1]: [CNode]4950}
+
+
+# [No.5] map.4864
+# In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/
+funcgraph fg_4864(
+        %para25 : Func    # [Parameter]4865
+        , %para26 : Tensor(F32)[1]    # [Parameter]4866
+        , %para27 : Ref[Tensor(F32)][1]    # [Parameter]4867
+        , %para28 : Ref[Tensor(F32)][1]    # [Parameter]4868
+        , %para29 : Ref[Tensor(F32)][1]    # [Parameter]4869
+        , %para30 : Bool    # [Parameter]4870
+        , %para31 : Bool    # [Parameter]4871
+    ) {
+
+#------------------------> 4
+    %1 = %para25(%para26, %para27, %para28, %para29, %para30, %para31)    #(Tensor(F32)[1], Ref[Tensor(F32)][1], Ref[Tensor(F32)][1], Ref[Tensor(F32)][1], Bool, Bool) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4952
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#[CNode]4953
+}
+# order:
+#   1: map.4864:[CNode]4952{[0]: [Parameter]4865, [1]: [Parameter]4866, [2]: [Parameter]4867, [3]: [Parameter]4868, [4]: [Parameter]4869, [5]: [Parameter]4870, [6]: [Parameter]4871}
+#   2: map.4864:[CNode]4953{[0]: ValueNode<Primitive> Return, [1]: [CNode]4952}
+
+
+# [No.6] 4872.4873
+# In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/
+funcgraph fg_4873(
+        %para32 : Func    # 4874
+        , %para33 : Func    # 4875
+        , %para34 : Func    # 4876
+        , %para35 : Func    # 4877
+        , %para36 : Bool    # 4878
+        , %para37 : Bool    # 4879
+        , %para38 : Bool    # 4880
+        , %para39 : Tensor(F32)[1]    # 4881
+        , %para40 : Tensor(F32)[1]    # 4882
+        , %para41 : Tensor(F32)[]    # 4883
+        , %para42 : Tensor(F32)[]    # 4884
+        , %para43 : Tensor(F32)[]    # 4885
+        , %para44 : Ref[Tensor(F32)][]    # 4886
+        , %para45 : Tensor(F32)[1]    # 4887
+        , %para46 : Ref[Tensor(F32)][1]    # 4888
+        , %para47 : Ref[Tensor(F32)][1]    # 4889
+        , %para48 : Ref[Tensor(F32)][1]    # 4890
+        , %para49 : Bool    # 4891
+        , %para50 : Bool    # 4892
+    ) {
+
+#------------------------> 5
+    %1 = MultitypeFuncGraph::adam_opt{(Func, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor), (Func, Func, Func, Func, Bool, Bool, Bool, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, Bool, Bool), (Tensor, Tensor, Tensor, Tensor, Number, Tensor, Tensor, Tensor, Tensor, Bool, Bool), (Func, Func, Func, Func, Bool, Bool, Bool, Tensor, Tensor, Tensor, Tensor, Tensor, Tensor, RowTensor, Tensor, Tensor, Tensor, Bool, Bool)}(%para32, %para33, %para34, %para35, %para36, %para37, %para38, %para39, %para40, %para41, %para42, %para43, %para44, %para45, %para46, %para47, %para48, %para49, %para50)    #(Func, Func, Func, Func, Bool, Bool, Bool, Tensor(F32)[1], Tensor(F32)[1], Tensor(F32)[], Tensor(F32)[], Tensor(F32)[], Ref[Tensor(F32)][], Tensor(F32)[1], Ref[Tensor(F32)][1], Ref[Tensor(F32)][1], Ref[Tensor(F32)][1], Bool, Bool) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#4954
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(361)/            success = self.map_(F.partial(_adam_opt, self.opt, self.sparse_opt, self._ps_push, self._ps_pull,/#4955
+}
+# order:
+#   1: 4872.4873:4954{[0]: ValueNode<MultitypeFuncGraph> adam_opt, [1]: 4874, [2]: 4875, [3]: 4876, [4]: 4877, [5]: 4878, [6]: 4879, [7]: 4880, [8]: 4881, [9]: 4882, [10]: 4883, [11]: 4884, [12]: 4885, [13]: 4886, [14]: 4887, [15]: 4888, [16]: 4889, [17]: 4890, [18]: 4891, [19]: 4892}
+#   2: 4872.4873:4955{[0]: ValueNode<Primitive> Return, [1]: 4954}
+
+
+# [No.7] _run_opt_with_one_number.4893
+# In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(154)/def _run_opt_with_one_number(opt, sparse_opt, push, pull, use_locking, use_nesterov, target,/
+funcgraph fg_4893(
+        %para51 : Func    # opt
+        , %para52 : Func    # sparse_opt
+        , %para53 : Func    # push
+        , %para54 : Func    # pull
+        , %para55 : Bool    # use_locking
+        , %para56 : Bool    # use_nesterov
+        , %para57 : Bool    # target
+        , %para58 : Tensor(F32)[1]    # beta1_power
+        , %para59 : Tensor(F32)[1]    # beta2_power
+        , %para60 : Tensor(F32)[]    # beta1
+        , %para61 : Tensor(F32)[]    # beta2
+        , %para62 : Tensor(F32)[]    # eps
+        , %para63 : Ref[Tensor(F32)][]    # lr
+        , %para64 : Tensor(F32)[1]    # gradient
+        , %para65 : Ref[Tensor(F32)][1]    # param
+        , %para66 : Ref[Tensor(F32)][1]    # moment1
+        , %para67 : Ref[Tensor(F32)][1]    # moment2
+        , %para68 : Bool    # ps_parameter
+        , %para69 : Bool    # cache_enable
+    ) {
+
+#------------------------> 6
+    %1 = Primitive::resolve{prim_type=1}(NameSpace::CommonOPS, bool_)    #(ExternalType, ExternalType) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#[CNode]4956
+    %2 = Primitive::resolve{prim_type=1}(NameSpace::CommonOPS, bool_)    #(ExternalType, ExternalType) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#ps_parameter
+    %3 = %2(%para68)    #(Bool) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#ps_parameter
+    %4 = Primitive::Switch{prim_type=1}(%3, FuncGraph::fg_4957, FuncGraph::fg_4958)    #(Undefined, Undefined, Undefined)    # fg_4957=↰_run_opt_with_one_number.4957, fg_4958=↱_run_opt_with_one_number.4958 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#[CNode]4959
+    %5 = %4() #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#[CNode]4956
+    %6 = %1(%5)    #(Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#[CNode]4956
+    %7 = Primitive::Switch{prim_type=1}(%6, FuncGraph::fg_4960, FuncGraph::fg_4961)    #(Undefined, Undefined, Undefined)    # fg_4960=✓_run_opt_with_one_number.4960, fg_4961=✗_run_opt_with_one_number.4961 #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#[CNode]4962
+    %8 = %7() #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#[CNode]4963
+    Primitive::Return{prim_type=1}(%8)    #(Undefined) #scope: Default
+      # In file D:\ProgramData\Anaconda3\envs\MindSpore\lib\site-packages\mindspore\nn\optim\adam.py(159)/    if ps_parameter and not cache_enable:/#[CNode]4964
+}
+# order:
+#   1: _run_opt_with_one_number.4893:ps_parameter{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS, [2]: ValueNode<Symbol> bool_}
+#   2: _run_opt_with_one_number.4893:ps_parameter{[0]: ps_parameter, [1]: ps_parameter}
+#   3: _run_opt_with_one_number.4893:[CNode]4959{[0]: ValueNode<Primitive> Switch, [1]: ps_parameter, [2]: ValueNode<FuncGraph> ↰_run_opt_with_one_number.4957, [3]: ValueNode<FuncGraph> ↱_run_opt_with_one_number.4958}
+#   4: _run_opt_with_one_number.4893:[CNode]4956{[0]: [CNode]4959}
+#   5: _run_opt_with_one_number.4893:[CNode]4956{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> CommonOPS, [2]: ValueNode<Symbol> bool_}
+#   6: _run_opt_with_one_number.4893:[CNode]4956{[0]: [CNode]4956, [1]: [CNode]4956}
+#   7: _run_opt_with_one_number.4893:[CNode]4965{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr, [2]: ValueNode<Symbol> P}
+#   8: _run_opt_with_one_number.4893:[CNode]4966{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> SymbolStr, [2]: ValueNode<Symbol> F}
+#   9: _run_opt_with_one_number.4893:[CNode]4962{[0]: ValueNode<Primitive> Switch, [1]: [CNode]4956, [2]: ValueNode<FuncGraph> ✓_run_opt_with_one_number.4960, [3]: ValueNode<FuncGraph> ✗_run_opt_with_one_number.4961}
+#  10: _run_opt_with_one_number.4893:[CNode]4963{[0]: [CNode]4962}
+#  11: _run_opt_with_one_number.4893:[CNode]4964{[0]: ValueNode<Primitive> Return, [1]: [CNode]4963}
+
+
+#===============================================================================
+# num of function graphs in stack: 7/8 (Ignored 1 internal frames).

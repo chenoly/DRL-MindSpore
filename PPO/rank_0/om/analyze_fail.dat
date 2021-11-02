@@ -1,0 +1,191 @@
+# [No.1] construct_wrapper.28
+# In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(52)/    def construct(self, state, advantage_reward, epsilon):/
+funcgraph fg_28(
+        %para1 : Tensor(F32)[64, 2]    # state
+        , %para2 : Tensor(F32)[64, 64]    # advantage_reward
+        , %para3 : F32    # epsilon
+        , %para4 : Ref[Tensor(F32)][32, 2]    # actor_.fc.0.weight
+        , %para5 : Ref[Tensor(F32)][32]    # actor_.fc.0.bias
+        , %para6 : Ref[Tensor(F32)][2, 32]    # actor_.fc.2.weight
+        , %para7 : Ref[Tensor(F32)][2]    # actor_.fc.2.bias
+    ) {
+
+#------------------------> 0
+    %1 = FuncGraph::fg_45(%para1, %para2, %para3)    #(Tensor(F32)[64, 2], Tensor(F32)[64, 64], F32)    # fg_45=construct.45 #scope: Default
+      # #[CNode]47
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(59)/        return self.grad(self.loss_network, weights)(state, advantage_reward, epsilon)/#[CNode]48
+}
+# order:
+#   1: construct_wrapper.28:[CNode]47{[0]: ValueNode<FuncGraph> construct.45, [1]: state, [2]: advantage_reward, [3]: epsilon}
+#   2: construct_wrapper.28:[CNode]48{[0]: ValueNode<Primitive> Return, [1]: [CNode]47}
+
+
+# [No.2] construct.45
+# In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(52)/    def construct(self, state, advantage_reward, epsilon):/
+funcgraph fg_45[fg_28](
+        %para8 : Tensor(F32)[64, 2]    # state
+        , %para9 : Tensor(F32)[64, 64]    # advantage_reward
+        , %para10 : F32    # epsilon
+    ) {
+    %1 : Func = UnpackGraphPrimitive::UnpackGraph{prim_type=1}(FuncGraph::fg_29, %para8, %para9, %para10)    #(Func, Tensor(F32)[64, 2], Tensor(F32)[64, 64], F32)    # fg_29=construct.29 #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(59)/        return self.grad(self.loss_network, weights)(state, advantage_reward, epsilon)/#49
+    %2 : Tuple[Ref[Tensor(F32)]*4] = Primitive::MakeTuple{prim_type=1}(%para4, %para5, %para6, %para7)    #(Ref[Tensor(F32)][32, 2], Ref[Tensor(F32)][32], Ref[Tensor(F32)][2, 32], Ref[Tensor(F32)][2]) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(58)/        weights = self.weights/#[CNode]50
+    %3 : Func = DoSignaturePrimitive::S-Prim-grad{prim_type=1}(%1, %2)    #(Func, Tuple[Ref[Tensor(F32)]*4]) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(59)/        return self.grad(self.loss_network, weights)(state, advantage_reward, epsilon)/#49
+
+#------------------------> 1
+    %4 = %3(%para8, %para9, %para10)    #(Tensor(F32)[64, 2], Tensor(F32)[64, 64], F32) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(59)/        return self.grad(self.loss_network, weights)(state, advantage_reward, epsilon)/#49
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(59)/        return self.grad(self.loss_network, weights)(state, advantage_reward, epsilon)/#[CNode]51
+}
+# order:
+#   1: construct.45:49{[0]: ValueNode<UnpackGraphPrimitive> UnpackGraph, [1]: ValueNode<FuncGraph> construct.29, [2]: state, [3]: advantage_reward, [4]: epsilon}
+#   2: construct.45:49{[0]: ValueNode<DoSignaturePrimitive> S-Prim-grad, [1]: 49, [2]: [CNode]50}
+#   3: construct.45:49{[0]: 49, [1]: state, [2]: advantage_reward, [3]: epsilon}
+#   4: construct.45:[CNode]51{[0]: ValueNode<Primitive> Return, [1]: 49}
+
+
+# [No.3] construct.46
+# In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/
+funcgraph fg_46[fg_52](
+        %para11 : Tensor(F32)[64, 2]    # construct
+        , %para12 : Tensor(F32)[64, 64]    # construct
+        , %para13 : F32    # construct
+    ) {
+    %1 : $(construct.52):Func = Primitive::J{prim_type=1}[side_effect_propagate=I64(1)](%para-1)    #(Func) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(59)/        return self.grad(self.loss_network, weights)(state, advantage_reward, epsilon)/#53
+
+#------------------------> 2
+    %2 = %1(%para11, %para12, %para13)    #(Tensor(F32)[64, 2], Tensor(F32)[64, 64], F32) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+    %3 = Primitive::TupleGetItem{prim_type=1}(%2, I64(1))    #(Undefined, Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+    %4 = Primitive::TupleGetItem{prim_type=1}(%2, I64(0))    #(Undefined, Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+    %5 = HyperMapPy::hyper_map[ones_like_leaf]{fn_leaf=MultitypeFuncGraph::ones_like_leaf{(Func), (SparseTensor), (Tensor), (TypeType), (Number)}}(%4)    #(Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+    %6 = %3(%5)    #(Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+    %7 = Primitive::TupleGetItem{prim_type=1}(%6, I64(0))    #(Undefined, Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+    %8 = Primitive::Partial{prim_type=1}[side_effect_propagate=I64(1)](MultitypeFuncGraph::env_get{(EnvType, Tensor)}, %7)    #(Undefined, Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+    %9 = HyperMap::hyper_map(%8, %para-1)    #(Undefined, Tuple[Ref[Tensor(F32)]*4]) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+    Primitive::Return{prim_type=1}(%9)    #(Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/#construct
+}
+# order:
+#   1: construct.46:construct{[0]: 53, [1]: construct, [2]: construct, [3]: construct}
+#   2: construct.46:construct{[0]: ValueNode<Primitive> TupleGetItem, [1]: construct, [2]: ValueNode<Int64Imm> 0}
+#   3: construct.46:construct{[0]: ValueNode<Primitive> TupleGetItem, [1]: construct, [2]: ValueNode<Int64Imm> 1}
+#   4: construct.46:construct{[0]: ValueNode<HyperMapPy> hyper_map[ones_like_leaf], [1]: construct}
+#   5: construct.46:construct{[0]: construct, [1]: construct}
+#   6: construct.46:construct{[0]: ValueNode<Primitive> TupleGetItem, [1]: construct, [2]: ValueNode<Int64Imm> 0}
+#   7: construct.46:construct{[0]: ValueNode<Primitive> Partial, [1]: ValueNode<MultitypeFuncGraph> env_get, [2]: construct}
+#   8: construct.46:construct{[0]: ValueNode<HyperMap> hyper_map, [1]: construct, [2]: 54}
+#   9: construct.46:construct{[0]: ValueNode<Primitive> Return, [1]: construct}
+
+
+# [No.4] construct.29
+# In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(15)/    def construct(self, state, advantage_reward, epsilon):/
+funcgraph fg_29[fg_28](
+        %para14 : Tensor(F32)[64, 2]    # state
+        , %para15 : Tensor(F32)[64, 64]    # advantage_reward
+        , %para16 : F32    # epsilon
+    ) {
+    %1 : Tensor(F32)[64, 2] = FuncGraph::fg_55(%para14)    #(Tensor(F32)[64, 2])    # fg_55=construct.55 #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(16)/        cat = Categorical(self.actor(state))/#[CNode]56
+    %2 : Func = ClassType(%1)    #(Tensor(F32)[64, 2]) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(16)/        cat = Categorical(self.actor(state))/#cat
+
+#------------------------> 3
+    %3 = Primitive::getattr{prim_type=1}(%2, "log_prob")    #(Func, String) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(18)/        log_probs = ops.exp(cat.log_prob(index))/#[CNode]57
+    %4 = Primitive::getattr{prim_type=1}(%2, "sample")    #(Func, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(17)/        index = cat.sample()/#[CNode]58
+    %5 = %4() #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(17)/        index = cat.sample()/#index
+    %6 = %3(%5)    #(Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(18)/        log_probs = ops.exp(cat.log_prob(index))/#[CNode]59
+    %7 = DoSignaturePrimitive::S-Prim-Exp{prim_type=1}[input_names=["x"], output_names=["y"]](%6)    #(Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(18)/        log_probs = ops.exp(cat.log_prob(index))/#log_probs
+    %8 = FuncGraph::fg_55(%para14)    #(Tensor(F32)[64, 2])    # fg_55=construct.55 #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(20)/        cat_ = Categorical(self.actor_(state))/#[CNode]60
+    %9 = ClassType(%8)    #(Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(20)/        cat_ = Categorical(self.actor_(state))/#cat_
+    %10 = Primitive::getattr{prim_type=1}(%9, "log_prob")    #(Undefined, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(22)/        log__probs = ops.exp(cat_.log_prob(index_))/#[CNode]61
+    %11 = Primitive::getattr{prim_type=1}(%9, "sample")    #(Undefined, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(21)/        index_ = cat_.sample()/#[CNode]62
+    %12 = %11() #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(21)/        index_ = cat_.sample()/#index_
+    %13 = %10(%12)    #(Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(22)/        log__probs = ops.exp(cat_.log_prob(index_))/#[CNode]63
+    %14 = DoSignaturePrimitive::S-Prim-Exp{prim_type=1}[input_names=["x"], output_names=["y"]](%13)    #(Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(22)/        log__probs = ops.exp(cat_.log_prob(index_))/#log__probs
+    %15 = DoSignaturePrimitive::S-Prim-sub{prim_type=1}(%7, %14)    #(Undefined, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(24)/        v1 = (log_probs - log__probs)*advantage_reward/#[CNode]64
+    %16 = DoSignaturePrimitive::S-Prim-mul{prim_type=1}(%15, %para15)    #(Undefined, Tensor(F32)[64, 64]) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(24)/        v1 = (log_probs - log__probs)*advantage_reward/#v1
+    %17 = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(%para15)    #(Tensor(F32)[64, 64]) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(25)/        v2 = ops.clip_by_value(advantage_reward,clip_value_min=1-epsilon,clip_value_max=1+epsilon)/#[CNode]65
+    %18 = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}("clip_value_min", "clip_value_max")    #(Undefined, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(25)/        v2 = ops.clip_by_value(advantage_reward,clip_value_min=1-epsilon,clip_value_max=1+epsilon)/#[CNode]66
+    %19 = DoSignaturePrimitive::S-Prim-sub{prim_type=1}(I64(1), %para16)    #(Undefined, F32) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(25)/        v2 = ops.clip_by_value(advantage_reward,clip_value_min=1-epsilon,clip_value_max=1+epsilon)/#[CNode]67
+    %20 = DoSignaturePrimitive::S-Prim-add{prim_type=1}(I64(1), %para16)    #(Undefined, F32) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(25)/        v2 = ops.clip_by_value(advantage_reward,clip_value_min=1-epsilon,clip_value_max=1+epsilon)/#[CNode]68
+    %21 = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(%19, %20)    #(Undefined, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(25)/        v2 = ops.clip_by_value(advantage_reward,clip_value_min=1-epsilon,clip_value_max=1+epsilon)/#[CNode]69
+    %22 = DoSignaturePrimitive::S-Prim-make_dict{prim_type=1}(%18, %21)    #(Undefined, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(25)/        v2 = ops.clip_by_value(advantage_reward,clip_value_min=1-epsilon,clip_value_max=1+epsilon)/#[CNode]70
+    %23 = UnpackCall::unpack_call(FuncGraph::fg_71, %17, %22)    #(Undefined, Undefined, Undefined)    # fg_71=clip_by_value.71 #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(25)/        v2 = ops.clip_by_value(advantage_reward,clip_value_min=1-epsilon,clip_value_max=1+epsilon)/#v2
+    %24 = DoSignaturePrimitive::S-Prim-Minimum{prim_type=1}[input_names=["x", "y"], output_names=["output"]](%16, %23)    #(Undefined, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(26)/        J = -self.ops(v1,v2).mean()/#[CNode]72
+    %25 = Primitive::getattr{prim_type=1}(%24, "mean")    #(Undefined, Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(26)/        J = -self.ops(v1,v2).mean()/#[CNode]73
+    %26 = %25() #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(26)/        J = -self.ops(v1,v2).mean()/#[CNode]74
+    %27 = DoSignaturePrimitive::S-Prim-negative{prim_type=1}(%26)    #(Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(26)/        J = -self.ops(v1,v2).mean()/#J
+    Primitive::Return{prim_type=1}(%27)    #(Undefined) #scope: Default/loss_network-ActorWithLossCell
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\PPO\MyTrainOneStepCell.py(27)/        return J/#[CNode]75
+}
+# order:
+#   1: construct.29:[CNode]56{[0]: ValueNode<FuncGraph> construct.55, [1]: state}
+#   2: construct.29:cat{[0]: ValueNode<ClassType> class 'mindspore.nn.probability.distribution.categorical.Categorical', [1]: [CNode]56}
+#   3: construct.29:[CNode]58{[0]: ValueNode<Primitive> getattr, [1]: cat, [2]: ValueNode<StringImm> sample}
+#   4: construct.29:index{[0]: [CNode]58}
+#   5: construct.29:[CNode]57{[0]: ValueNode<Primitive> getattr, [1]: cat, [2]: ValueNode<StringImm> log_prob}
+#   6: construct.29:[CNode]59{[0]: [CNode]57, [1]: index}
+#   7: construct.29:log_probs{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Exp, [1]: [CNode]59}
+#   8: construct.29:[CNode]60{[0]: ValueNode<FuncGraph> construct.55, [1]: state}
+#   9: construct.29:cat_{[0]: ValueNode<ClassType> class 'mindspore.nn.probability.distribution.categorical.Categorical', [1]: [CNode]60}
+#  10: construct.29:[CNode]62{[0]: ValueNode<Primitive> getattr, [1]: cat_, [2]: ValueNode<StringImm> sample}
+#  11: construct.29:index_{[0]: [CNode]62}
+#  12: construct.29:[CNode]61{[0]: ValueNode<Primitive> getattr, [1]: cat_, [2]: ValueNode<StringImm> log_prob}
+#  13: construct.29:[CNode]63{[0]: [CNode]61, [1]: index_}
+#  14: construct.29:log__probs{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Exp, [1]: [CNode]63}
+#  15: construct.29:[CNode]64{[0]: ValueNode<DoSignaturePrimitive> S-Prim-sub, [1]: log_probs, [2]: log__probs}
+#  16: construct.29:v1{[0]: ValueNode<DoSignaturePrimitive> S-Prim-mul, [1]: [CNode]64, [2]: advantage_reward}
+#  17: construct.29:[CNode]65{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: advantage_reward}
+#  18: construct.29:[CNode]67{[0]: ValueNode<DoSignaturePrimitive> S-Prim-sub, [1]: ValueNode<Int64Imm> 1, [2]: epsilon}
+#  19: construct.29:[CNode]68{[0]: ValueNode<DoSignaturePrimitive> S-Prim-add, [1]: ValueNode<Int64Imm> 1, [2]: epsilon}
+#  20: construct.29:[CNode]66{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: ValueNode<StringImm> clip_value_min, [2]: ValueNode<StringImm> clip_value_max}
+#  21: construct.29:[CNode]69{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: [CNode]67, [2]: [CNode]68}
+#  22: construct.29:[CNode]70{[0]: ValueNode<DoSignaturePrimitive> S-Prim-make_dict, [1]: [CNode]66, [2]: [CNode]69}
+#  23: construct.29:v2{[0]: ValueNode<UnpackCall> unpack_call, [1]: ValueNode<FuncGraph> clip_by_value.71, [2]: [CNode]65, [3]: [CNode]70}
+#  24: construct.29:[CNode]72{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Minimum, [1]: v1, [2]: v2}
+#  25: construct.29:[CNode]73{[0]: ValueNode<Primitive> getattr, [1]: [CNode]72, [2]: ValueNode<StringImm> mean}
+#  26: construct.29:[CNode]74{[0]: [CNode]73}
+#  27: construct.29:J{[0]: ValueNode<DoSignaturePrimitive> S-Prim-negative, [1]: [CNode]74}
+#  28: construct.29:[CNode]75{[0]: ValueNode<Primitive> Return, [1]: J}
+
+
+#===============================================================================
+# num of function graphs in stack: 4

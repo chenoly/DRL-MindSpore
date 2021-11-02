@@ -1,0 +1,52 @@
+# [No.1] construct_wrapper.24
+# In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(61)/    def construct(self, state, action, td_error):/
+funcgraph fg_24(
+        %para1 : Tensor(F32)[64, 8]    # state
+        , %para2 : Tensor(F32)[64, 2]    # action
+        , %para3 : Tensor(F32)[64, 64]    # td_error
+        , %para4 : Ref[Tensor(F32)][32, 10]    # _critic.fc.0.weight
+        , %para5 : Ref[Tensor(F32)][32]    # _critic.fc.0.bias
+        , %para6 : Ref[Tensor(F32)][1, 32]    # _critic.fc.2.weight
+        , %para7 : Ref[Tensor(F32)][1]    # _critic.fc.2.bias
+    ) {
+
+#------------------------> 0
+    %1 = FuncGraph::fg_26(%para1, %para2, %para3)    #(Tensor(F32)[64, 8], Tensor(F32)[64, 2], Tensor(F32)[64, 64])    # fg_26=construct.26 #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(68)/        return self.grad(self.loss_network, weights)(state, action, td_error)/#[CNode]27
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(68)/        return self.grad(self.loss_network, weights)(state, action, td_error)/#[CNode]28
+}
+# order:
+#   1: construct_wrapper.24:[CNode]27{[0]: ValueNode<FuncGraph> construct.26, [1]: state, [2]: action, [3]: td_error}
+#   2: construct_wrapper.24:[CNode]28{[0]: ValueNode<Primitive> Return, [1]: [CNode]27}
+
+
+# [No.2] construct.26
+# In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(61)/    def construct(self, state, action, td_error):/
+funcgraph fg_26[fg_24](
+        %para8 : Tensor(F32)[64, 8]    # state
+        , %para9 : Tensor(F32)[64, 2]    # action
+        , %para10 : Tensor(F32)[64, 64]    # td_error
+    ) {
+    %1 : Func = UnpackGraphPrimitive::UnpackGraph{prim_type=1}(FuncGraph::fg_29, %para8, %para9, %para10)    #(Func, Tensor(F32)[64, 8], Tensor(F32)[64, 2], Tensor(F32)[64, 64])    # fg_29=construct.29 #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(68)/        return self.grad(self.loss_network, weights)(state, action, td_error)/#30
+    %2 : Tuple[Ref[Tensor(F32)]*4] = Primitive::MakeTuple{prim_type=1}(%para4, %para5, %para6, %para7)    #(Ref[Tensor(F32)][32, 10], Ref[Tensor(F32)][32], Ref[Tensor(F32)][1, 32], Ref[Tensor(F32)][1]) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(67)/        weights = self.weights/#[CNode]31
+    %3 : Func = DoSignaturePrimitive::S-Prim-grad{prim_type=1}(%1, %2)    #(Func, Tuple[Ref[Tensor(F32)]*4]) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(68)/        return self.grad(self.loss_network, weights)(state, action, td_error)/#30
+
+#------------------------> 1
+    %4 = %3(%para8, %para9, %para10)    #(Tensor(F32)[64, 8], Tensor(F32)[64, 2], Tensor(F32)[64, 64]) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(68)/        return self.grad(self.loss_network, weights)(state, action, td_error)/#30
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default
+      # In file E:\ProgramData\Documents\Pycharm Documents\MindSpore_Learning\MindSpore_Learning\TD3\MyTrainOneStepCell.py(68)/        return self.grad(self.loss_network, weights)(state, action, td_error)/#[CNode]32
+}
+# order:
+#   1: construct.26:30{[0]: ValueNode<UnpackGraphPrimitive> UnpackGraph, [1]: ValueNode<FuncGraph> construct.29, [2]: state, [3]: action, [4]: td_error}
+#   2: construct.26:30{[0]: ValueNode<DoSignaturePrimitive> S-Prim-grad, [1]: 30, [2]: [CNode]31}
+#   3: construct.26:30{[0]: 30, [1]: state, [2]: action, [3]: td_error}
+#   4: construct.26:[CNode]32{[0]: ValueNode<Primitive> Return, [1]: 30}
+
+
+#===============================================================================
+# num of function graphs in stack: 2
