@@ -1,5 +1,5 @@
 # DRL-MindSpore
-mindspore for reinforcement learning.\
+Mindspore for Reinforcement Learning.\
 DDPG DQN TD3 PPO is well editted,but PPO is not very complete,because it also have some problems.\
-these algorithms about stochastic-policy-gradient get some trouble,i will solve it later.\
-welcome to completing!
+These algorithms about stochastic-policy-gradient get some trouble,i will solve it later.\
+Welcome to completing!
