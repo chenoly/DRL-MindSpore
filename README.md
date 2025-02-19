@@ -1,5 +1,7 @@
 # DRL-MindSpore
-Mindspore for Reinforcement Learning.\
-DDPG DQN TD3 PPO is well editted,but PPO is not very complete,because it also have some problems.\
-These algorithms about stochastic-policy-gradient get some trouble,i will solve it later.\
-Welcome to completing!
+
+**MindSpore Implementation for Reinforcement Learning.**  
+The repository provides well-edited implementations of **DDPG**, **DQN**, and **TD3** algorithms.  
+**PPO** is also included but is currently incomplete due to some unresolved issues.  
+There are still challenges with stochastic policy gradient algorithms, and I am working on resolving them.  
+Contributions and improvements are welcome!
